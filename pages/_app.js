@@ -25,6 +25,7 @@ function App({ Component, pageProps }) {
         <meta property='og:image' content='/assets/img/c-bg.png' />
         <link href='/assets/img/c-bg.png' rel='icon' />
         <link href='/assets/img/c-bg.png' rel='apple-touch-icon' />
+        <script async src="https://arc.io/widget.min.js#sBnXCUTp"></script>
       </Head>
       <div className='flex'>
         <SideBar className='select-none'>
