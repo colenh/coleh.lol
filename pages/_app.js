@@ -1,9 +1,14 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import tw from 'tailwind-styled-components';
 import { FaBook, FaCode, FaHome, FaPhone, FaQuestion } from 'react-icons/fa';
 import '../styles/globals.css';
+
+const AnimatedCursor = dynamic(() => import('react-animated-cursor'), {
+  ssr: false,
+});
 
 function App({ Component, pageProps }) {
   const pageTitle = Component.pageTitle === 'Home' ? 'Cole Harris' : `${Component.pageTitle} - Cole` || 'Cole Harris';
@@ -23,13 +28,13 @@ function App({ Component, pageProps }) {
         <meta property='og:title' content='Cole Harris' />
         <meta property='og:description' content='I am a 14y.o. full-stack indie developer and innovator.' />
         <meta property='og:image' content='/assets/img/c-bg.png' />
-        <link href='/assets/img/c-bg.png' rel='icon' />
-        <link href='/assets/img/c-bg.png' rel='apple-touch-icon' />
+        <link href='/assets/img/fav.png' rel='icon' />
+        <link href='/assets/img/fav.png' rel='apple-touch-icon' />
       </Head>
       <div className='flex'>
         <SideBar className='select-none'>
           <TopIcon>
-            <Image src="/assets/img/c.png" width='23px' height='28px' />
+            <Image src='/assets/img/c.png' width='23px' height='28px' />
           </TopIcon>
           <Divider />
           <SideBarIcon text='Home' page='/' icon={<FaHome size='28' />} />
@@ -39,8 +44,16 @@ function App({ Component, pageProps }) {
           <SideBarIcon text='ETC' page='/etc' icon={<FaQuestion size='20' />} />
         </SideBar>
 
-        <Content> 
+        <Content>
           <Component {...pageProps} />
+          <AnimatedCursor
+            innerSize={4}
+            outerSize={32}
+            color='149, 149, 149'
+            outerAlpha={0.2}
+            innerScale={1}
+            outerScale={1.5}
+          />
         </Content>
       </div>
     </>
@@ -143,8 +156,8 @@ const SideBarIcon = ({ icon, text = 'Tooltip', page }) => (
       <Tooltip>
         {text}
       </Tooltip>
-    </IconGroup> 
-  </Link> 
+    </IconGroup>
+  </Link>
 );
 
 export default App;
